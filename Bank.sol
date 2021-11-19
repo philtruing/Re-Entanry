@@ -25,4 +25,14 @@ contract Bank{
         }
         userBalances[msg.sender] = 0;
     }
+    
+     function withdrawBalance2(uint i) public{
+        uint amountToWithdraw = userBalances[msg.sender];
+        require(i <= amountToWithdraw);
+         if(msg.sender.call.value(i)() == false){
+            throw;
+         }
+         userBalances[msg.sender] -= i;
+         
+    }
 }
